@@ -1,8 +1,8 @@
 
 export const Loading = ()=>{
-    return(
-        <h2>
-            Loading...
-        </h2>
+    return(   
+        <div className="loading">
+            <h1>Loading...</h1>
+        </div>
     )
 }
