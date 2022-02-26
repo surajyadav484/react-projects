@@ -377,3 +377,17 @@ width: 70%;
     padding: 20px;
     align-items: center;
 } 
+.home-heading-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px
+}
+
+.show-more{
+    margin-top: 0 !important;
+} 
+.crypto-card .crypto-image{
+    width:35px;
+}
