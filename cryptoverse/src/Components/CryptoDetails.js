@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Row, Col, Typography, Select } from "antd";
 import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined, ExclamationCircleOutlined, StopOutlined, TrophyOutlined, CheckOutlined, NumberOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import millify from "millify";
-import { useGetCryptoDetailsQuery } from "../services/cryptoApi";
+import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from "../services/cryptoApi";
 import { useParams, useSearchParams } from "react-router-dom";
 import HTMLReactParser from "html-react-parser";
+import lineChart from "./LineChart";
+import LineChart from "./LineChart";
 
 
 
@@ -18,12 +20,15 @@ const CryptoDetails = () => {
     const { data, isFetching } = useGetCryptoDetailsQuery(uuid);
     const [timeperiod, setTimePeriod] = useState('7d');
     const cryptoDetails = data?.data?.coin;
-
-    console.log(cryptoDetails);
+   
+    const {data:coinHistory, isFetching:isCoinHistoryFetching} = useGetCryptoHistoryQuery({uuid,timeperiod})
+    
+    //console.log(cryptoDetails);
+    console.log(coinHistory);
 
     if (isFetching) return 'Loading..'
 
-    const timePeriod = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
+    const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
 
     const stats = [
         { title: 'Price to USD', value: `$ ${cryptoDetails?.price && millify(cryptoDetails?.price)}`, icon: <DollarCircleOutlined /> },
@@ -60,11 +65,13 @@ const CryptoDetails = () => {
 
                 >
                     {
-                        timePeriod.map((time, i) => <option key={i} value={time}>{time}</option>)
+                        time.map((days, i) => <option key={i} value={days}>{days}</option>)
                     }
 
                 </Select>
-                {/* line chart */}
+
+                <LineChart coinHistory={coinHistory} currentPrice={millify(cryptoDetails.price)} coinName={cryptoDetails.name} />
+                
                 <Col className="stats-container">
                     <Col className="coin-value-statistics">
                         <Col className="coin-value-statistics-header">
