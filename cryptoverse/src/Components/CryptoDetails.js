@@ -7,6 +7,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import HTMLReactParser from "html-react-parser";
 import lineChart from "./LineChart";
 import LineChart from "./LineChart";
+import Loader from "./Loader";
 
 
 
@@ -26,7 +27,7 @@ const CryptoDetails = () => {
     //console.log(cryptoDetails);
     console.log(coinHistory);
 
-    if (isFetching) return 'Loading..'
+    if (isFetching) return <Loader />
 
     const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
 
