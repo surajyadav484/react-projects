@@ -1,5 +1,18 @@
-import { Box, Flex, ListItem, UnorderedList } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  ListItem,
+  Menu,
+  MenuItem,
+  MenuList,
+  Spacer,
+  UnorderedList,
+} from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom";
+import { FcMenu, FcHome, FcAbout } from "react-icons/fc";
+import { BsSearch } from "react-icons/bs";
+import { FiKey } from "react-icons/fi";
 
 const Navbar = () => (
   <Box
@@ -10,9 +23,18 @@ const Navbar = () => (
     zIndex="overlay"
   >
     <UnorderedList listStyleType="none" display="flex">
-      <ListItem margin="5">Home</ListItem>
-      <ListItem margin="5">About Us</ListItem>
-      <ListItem margin="5">Contact Us</ListItem>
+      <ListItem margin="2" fontSize="3xl" color="blue.400" fontWeight="bold">
+        <Link to="/">Property World</Link>
+      </ListItem>
+      <ListItem margin="5">
+        <Link to="/">Home</Link>
+      </ListItem>
+      <ListItem margin="5">
+        <Link to="/">About Us</Link>
+      </ListItem>
+      <ListItem margin="5">
+        <Link to="/">Contact Us</Link>
+      </ListItem>
     </UnorderedList>
   </Box>
 );
