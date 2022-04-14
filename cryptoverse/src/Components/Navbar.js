@@ -21,7 +21,7 @@ const Navbar = () => {
     }, [])
 
     useEffect(() => {
-        if (screenSize < 768) {
+        if (screenSize <= 768) {
             setActiveMenu(false)
         } else {
             setActiveMenu(true)
@@ -29,7 +29,7 @@ const Navbar = () => {
     }, [screenSize])
 
     const handleToggle = () =>{
-        if(screenSize<768){
+        if(screenSize<=768){
             setActiveMenu(!activeMenu);
         }
     }
